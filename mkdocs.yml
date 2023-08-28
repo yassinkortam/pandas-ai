@@ -11,6 +11,7 @@ theme:
 nav:
   - Introduction: index.md
   - Getting Started: getting-started.md
+  - SmartDataframe: smart-dataframe.md
   - Examples: examples.md
   - LLMs:
       - LLMs/llms.md
