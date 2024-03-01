@@ -6,6 +6,7 @@ from pandasai.pydantic import BaseModel, Field, validator
 
 from ..exceptions import LLMNotFoundError
 from ..llm import LLM, LangchainLLM
+from ..prompts.base import BasePrompt
 
 
 class LogServerConfig(TypedDict):
@@ -31,6 +32,7 @@ class Config(BaseModel):
     log_server: LogServerConfig = None
     direct_sql: bool = False
     dataframe_serializer: DataframeSerializerType = DataframeSerializerType.YML
+    custom_prompt_template: Any = None
 
     class Config:
         arbitrary_types_allowed = True

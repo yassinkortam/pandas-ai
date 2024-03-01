@@ -129,7 +129,6 @@ class SmartDataframe:
         Raises:
             ValueError: If the query is empty
         """
-        return self._agent.chat(query, output_type)
 
     def validate(self, schema: BaseModel):
         """

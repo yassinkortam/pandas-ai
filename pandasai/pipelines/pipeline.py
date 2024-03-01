@@ -83,6 +83,7 @@ class Pipeline(AbstractPipeline):
         Returns:
             Any: Depends on the type can return anything
         """
+
         try:
             for index, logic in enumerate(self._steps):
                 # Callback function before execution

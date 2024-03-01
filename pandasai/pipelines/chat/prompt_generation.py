@@ -51,18 +51,23 @@ class PromptGeneration(BaseLogicUnit):
 
         output_type = context.get("output_type")
 
-        return (
-            GeneratePythonCodeWithSQLPrompt(
+        if hasattr(context.config, "custom_prompt_template"):
+            template = context.config.custom_prompt_template
+            return template(
                 context=context,
                 last_code_generated=context.get("last_code_generated"),
                 viz_lib=viz_lib,
-                output_type=output_type,
-            )
-            if context.config.direct_sql
-            else GeneratePythonCodePrompt(
+                output_type=output_type)
+
+        if context.config.direct_sql:
+            return GeneratePythonCodeWithSQLPrompt(
                 context=context,
                 last_code_generated=context.get("last_code_generated"),
                 viz_lib=viz_lib,
-                output_type=output_type,
-            )
-        )
+                output_type=output_type)
+        
+        return GeneratePythonCodePrompt(
+            context=context,
+            last_code_generated=context.get("last_code_generated"),
+            viz_lib=viz_lib,
+            output_type=output_type)
